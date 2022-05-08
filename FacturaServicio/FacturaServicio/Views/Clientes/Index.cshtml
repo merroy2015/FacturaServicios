@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Clientes>
+@{
+   <h1>Clientes</h1>
+
+
+    <a asp-action="Crear" class=" btn btn-primary mb-3">Crear Nuevo</a>
+
+    <table class="table">
+
+        <thead>
+           <tr>
+                <th>Aciones</th>
+                <th>IdClinetes</th>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Telefono</th>
+                 <th>Email</th>
+           </tr>
+    
+        </thead>
+        <tbody>
+            @foreach (var cliente in Model)
+            {
+                <tr>
+                    <td>
+                    <a asp-action="AddDireccion" class="btn btn-success">Agre_Direcciones</a>
+                       <a asp-action="Editar" class="btn btn-primary">Editar</a>
+                       <a class= "btn btn-danger">Borar</a>
+
+                    </td>
+                    <td>
+                    @cliente.IdClientes
+                     </td>
+                    <td>
+                    @cliente.Cedula
+   
+   
+                    </td>
+                     <td>
+                    @cliente.Nombres
+   
+                    </td>
+                    <td>
+                      @cliente.Apellidos
+   
+                    </td>
+                    <td>
+                      @cliente.Telefono
+   
+                    </td>
+                       <td>
+                      @cliente.Email
+   
+                    </td>
+                </tr>
+            }
+
+        
+        </tbody> 
+    </table>
+}

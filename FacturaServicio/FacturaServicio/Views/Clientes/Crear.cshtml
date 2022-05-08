@@ -1,0 +1,52 @@
+﻿@model Clientes
+
+
+@{
+    ViewData["title"] = "Crear Cliente";
+
+}
+<h1 style="color:#1E90FF">CREAR CLIENTES</h1>
+<div class="p-1 mb-1 bg-secondary text-white">AQUI PUEDES CREAR LOS CLIENTES</div>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Crear">
+    <div class="mb-3">
+        <label style="color:#1E90FF" asp-for="Cedula" class= "form-label"></label>
+        <input type="text"asp-for="Cedula" class="form-control" />
+         <span asp-validation-for="Cedula" class="text-danger"></span>
+    </div>
+
+      <div class="mb-3">
+        <label asp-for="Nombres" class= "form-label"></label>
+         <input type="text"asp-for="Nombres" class="form-control" />
+         <span asp-validation-for="Nombres" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Apellidos" class= "form-label"></label>
+         <input type="text"asp-for="Apellidos" class="form-control" />
+         <span asp-validation-for="Apellidos" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Telefono" class= "form-label"></label>
+         <input type="text"asp-for="Telefono" class="form-control" />
+         <span asp-validation-for="Telefono" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+        <label asp-for="Email" class= "form-label"></label>
+         <input type="text"asp-for="Email" class="form-control" />
+         <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Estado" class= "form-label"></label>
+         <input type="text"asp-for="Estado" class="form-control" />
+         <span asp-validation-for="Estado" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+    <a class= "btn btn-secondary" asp-action="Index">Cancelar</a>
+ 
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+}

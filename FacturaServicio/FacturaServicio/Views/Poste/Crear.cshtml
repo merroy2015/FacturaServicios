@@ -1,0 +1,38 @@
+﻿@model PosteCreacionViewModel
+@{
+    ViewData["Title"] = "Crear Postes";
+}
+<h1>Crear Poste</h1>
+<form asp-action="Crear">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+<div class="mb-3">
+<label asp-for="IdRutas" class="form-label"></label>
+<select asp-for="IdPoste" asp-items= "Model.TiposRuta" class="form-select"></select>
+<span asp-validation-for="IdPoste" class="Text-danger"></span>
+</div>
+
+<div class="mb-3">
+<label asp-for="Nombre" class="Form-label"></label>
+<input asp-for="Nombre" class="form-control"/>
+<span asp-validation-for="Nombre" class="Text-danger"></span>
+</div>
+
+ <div class="mb-3">
+<label asp-for="Longitud" class="Form-label"></label>
+<input asp-for="Longitud" class="form-control"/>
+<span asp-validation-for="Longitud" class="Text-danger"></span>
+</div>
+
+ <div class="mb-3">
+<label asp-for="Latitud" class="Form-label"></label>
+<input asp-for="Latitud" class="form-control"/>
+<span asp-validation-for="Latitud" class="Text-danger"></span>
+</div>
+</form>
+ <button type="submit" class="btn btn-primary">Agregar</button>
+   <a class= "btn btn-secondary" asp-action="Index">Cancelar</a>
+@section Scripts{
+    
+    <partial name="_ValidationScriptsPartial" />
+}

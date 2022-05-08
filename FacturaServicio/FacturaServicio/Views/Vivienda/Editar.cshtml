@@ -1,0 +1,33 @@
+﻿@model Vivienda
+
+
+@{
+    ViewData["title"] = "Editar Vivienda";
+
+}
+<h1>Crear Vivienda </h1>
+<h5>El tipo de vivienda se refiere si la persona vive en apartamento casa etc.</h5>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Editar">
+   
+    <input type="hidden" asp-for="Id" />
+    <div class="mb-3">
+        <label asp-for="Tipo" class= "form-label"></label>
+         <input type="text" asp-for="Tipo" class="form-control" />
+         <span asp-validation-for="Tipo" class="text-danger"></span>
+    </div>
+
+      <div class="mb-3">
+        <label asp-for="Estado" class= "form-label"></label>
+         <input type="text"asp-for="Estado" class="form-control" />
+         <span asp-validation-for="Estado" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+    <a class= "btn btn-secondary" asp-action="Index">Cancelar</a>
+
+
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,67 @@
+﻿@model DireccionViewModel
+   
+
+@{
+    ViewBag["Title"] = "Agregar Direcciones";
+}
+<h1 style="color:#1E90FF">CREAR DIRECCIONES</h1>
+<div class="p-1 mb-1 bg-secondary text-white">AQUI PUEDES CREAR LAS DIRECCIONES</div>
+
+
+<form asp-action="AddDireccion">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="IdClientes" />
+    <div class="mb-3">
+        <label style="color:#1E90FF" asp-for="IdClientes" class= "form-label"></label>
+        <input type="text"asp-for="IdClientes" class="form-control" />
+         <span asp-validation-for="IdClientes" class="text-danger"></span>
+    </div>
+
+      <div class="mb-3">
+        <label asp-for="Tipo" class= "form-label"></label>
+         <input type="text"asp-for="Tipo" class="form-control" />
+         <span asp-validation-for="Tipo" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="No_Principal" class= "form-label"></label>
+         <input type="text"asp-for="No_Principal" class="form-control" />
+         <span asp-validation-for="No_Principal" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Sulfijo" class= "form-label"></label>
+         <input type="text"asp-for="Sulfijo" class="form-control" />
+         <span asp-validation-for="Sulfijo" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+        <label asp-for="No_Secundario" class= "form-label"></label>
+         <input type="text"asp-for="No_Secundario" class="form-control" />
+         <span asp-validation-for="No_Secundario" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="No_Complementario" class= "form-label"></label>
+         <input type="text"asp-for="No_Complementario" class="form-control" />
+         <span asp-validation-for="No_Complementario" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+        <label asp-for="CasaPropia" class= "form-label"></label>
+         <input type="text"asp-for="CasaPropia" class="form-control" />
+         <span asp-validation-for="CasaPropia" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+        <label asp-for="Fecha" class= "form-label"></label>
+         <input type="text"asp-for="Fecha" class="form-control" />
+         <span asp-validation-for="Fecha" class="text-danger"></span>
+    </div>
+     <div class="mb-3">
+        <label asp-for="Estado" class= "form-label"></label>
+         <input type="text"asp-for="Estado" class="form-control" />
+         <span asp-validation-for="Estado" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar</button>
+    <a class= "btn btn-secondary" asp-action="Index">Cancelar</a>
+ 
+</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
+}
