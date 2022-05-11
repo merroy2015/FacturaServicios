@@ -6,7 +6,7 @@ namespace FacturaServicio.Servicios
 {
     public interface IRepositorioClientes
     {
-        Task Actualizar(Clientes clientes);
+        Task Actualizar(DireccionViewModel direccion);
         Task<DireccionViewModel> IdDireccion(int idClientes, int UsuarioId);
         Task<IEnumerable<DireccionViewModel>> Obtener(int UsuarioId);
         Task<Clientes> ObtenerId(int idClientes, int UsuarioId);
@@ -32,14 +32,14 @@ namespace FacturaServicio.Servicios
                 @"select * from Clientes where IdClientes= @idClientes and UsuarioId= @UsuarioId",
                 new { idClientes, UsuarioId });
         }  
-        public async Task Actualizar(Clientes clientes)
+        public async Task Actualizar(DireccionViewModel direccion)
         {
             using var connection = new SqlConnection(connectionString);
-           var id = await connection.ExecuteAsync($@"INSERT INTO Direccion (IdCliente, Tipo, No_Principal,Sufijo, No_Secundario,
-               No_Complementario, CasaPropia, Fecha, Estado, IdRutas, IdVivienda, IdUsuario) values(@IdCliente, @Tipo, @No_Principal,@Sufijo, @No_Secundario,
+           var id = await connection.ExecuteAsync($@"INSERT INTO Direccion (IdClientes, Tipo, No_Principal, Sufijo, No_Secundario,
+              No_Complementario, CasaPropia, Fecha, Estado, IdRutas, IdVivienda, IdUsuario) values(@IdClientes, @Tipo, @No_Principal, @Sufijo, @No_Secundario,
               @No_Complementario, @CasaPropia, @Fecha, @Estado, @IdRutas, @IdVivienda, @IdUsuario);
-              SELECT SCOPE_IDENTITY();", clientes);
-            clientes.IdClientes= id;
+              SELECT SCOPE_IDENTITY();", direccion);
+            direccion.IdClientes= id;
         }
 
         public async Task<DireccionViewModel> IdDireccion (int idClientes, int UsuarioId)

@@ -22,7 +22,7 @@ namespace FacturaServicio.Controllers
             return View(cliente);
         }
         [HttpGet]
-      
+
         public IActionResult Crear(Clientes cliente)
 
         {
@@ -34,19 +34,19 @@ namespace FacturaServicio.Controllers
         {
             var usuarioId = serviciosUsuarios.ObtenerUsuarioid();
             var Direccion = await repositorioClientes.IdDireccion(IdClientes, usuarioId);
-               
+
             if (Direccion is null)
             {
-                return RedirectToAction("NoEncontrado1", "Home");   
+                return RedirectToAction("NoEncontrado1", "Home");
             }
             return View(Direccion);
-        } 
+        }
         [HttpPost]
         public async Task<IActionResult> AddDireccion(DireccionViewModel DireccionAdd)
         {
             if (!ModelState.IsValid)
             {
-                return View(DireccionAdd);  
+                return View(DireccionAdd);
             }
             var usuarioId = serviciosUsuarios.ObtenerUsuarioid();
             var Direccion = await repositorioClientes.IdDireccion(DireccionAdd.IdClientes, usuarioId);
@@ -59,38 +59,18 @@ namespace FacturaServicio.Controllers
             await repositorioClientes.Actualizar(DireccionAdd);
             return RedirectToAction("index");
         }
-        public async Task<IActionResult> Editar (int IdClientes)
+        public async Task<IActionResult> Editar(int IdClientes)
         {
             var usuarioId = serviciosUsuarios.ObtenerUsuarioid();
             var clientes = await repositorioClientes.ObtenerId(IdClientes, usuarioId);
 
-            if ( clientes is null)
+            if (clientes is null)
             {
                 return RedirectToAction("NoEncontrado1", "Home");
             }
             return View(clientes);
         }
-        [HttpPost]
-        public async Task<IActionResult> Editar(Clientes clientesEditar)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(clientesEditar);
-            }
-            var usuarioId = serviciosUsuarios.ObtenerUsuarioid();
-            var clientes = await repositorioClientes.ObtenerId(clientesEditar.IdClientes, usuarioId);
 
-            if (clientes is null)
-            {
-                return RedirectToAction("NoEncontrado", "Home");
-            }
-            clientesEditar.IdUsuario = usuarioId;
-            await repositorioClientes.Actualizar(clientesEditar);
-            return RedirectToAction("Index");
-        }
     }
-
-
-
 }
 

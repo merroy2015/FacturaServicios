@@ -3,7 +3,7 @@
     public class Direccion
     {
         public int IdDireccion { get; set; }
-        public int IdCliente { get; set; }
+        public int IdClientes { get; set; }
         public string Tipo { get; set; }
         public string No_Principal { get; set; }
         public string Sulfijo { get; set; }

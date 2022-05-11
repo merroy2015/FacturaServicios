@@ -8,7 +8,7 @@ namespace FacturaServicio.Models
       
         public string Tipo { get; set; }
         public string No_Principal { get; set; }
-        public string Sulfijo { get; set; }
+        public string Sufijo { get; set; }
         public string No_Secundario { get; set; }
         public string No_Complementario { get; set; }
         public string CasaPropia { get; set; }
