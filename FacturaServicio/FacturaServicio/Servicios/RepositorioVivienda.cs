@@ -8,7 +8,7 @@ namespace FacturaServicio.Servicios
     {
         void Crear(Vivienda Vivienda);
         Task<IEnumerable<Vivienda>> Obtener(int UsuarioId);
-        Task<Vivienda> ObtenerId(int Id, int UsuarioId);
+        Task<Vivienda> ObtenerId(int id, int UsuarioId);
     }
     public class RepositorioVivienda : IRepositorioVivienda
     {
@@ -24,7 +24,7 @@ namespace FacturaServicio.Servicios
             var id = connection.QuerySingle<int>($@"INSERT INTO Vivienda (Tipo,Estado)
                 Values (@Tipo,@Estado);
                 SELECT SCOPE_IDENTITY();", Vivienda);
-            Vivienda.Id = id;
+            Vivienda.id = id;
         }
 
 
@@ -36,12 +36,12 @@ namespace FacturaServicio.Servicios
                                                             Where UsuarioId = @UsuarioId", new { UsuarioId });
         }
 
-        public async Task<Vivienda> ObtenerId(int Id, int UsuarioId)
+        public async Task<Vivienda> ObtenerId(int id, int UsuarioId)
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryFirstOrDefaultAsync<Vivienda>(
-                 @"select * from Vivienda where IdVivienda= @Id and UsuarioId= @UsuarioId",
-                 new { Id, UsuarioId });
+                 @"select * from Vivienda where IdVivienda= @id and UsuarioId= @UsuarioId",
+                 new { id, UsuarioId });
         }
     }
 }

@@ -42,10 +42,10 @@ namespace FacturaServicio.Controllers
 
             return View();
         }
-        public async Task<IActionResult> Editar(int Id)
+        public async Task<IActionResult> Editar(int id)
         {
             var UsuarioId = servicioUsuarios.ObtenerUsuarioid();
-            var Vivienda = await repositorioVivienda.ObtenerId(Id, UsuarioId);
+            var Vivienda = await repositorioVivienda.ObtenerId(id, UsuarioId);
 
             if (Vivienda is null)
             {

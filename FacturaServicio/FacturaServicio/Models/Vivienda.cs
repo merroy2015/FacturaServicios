@@ -4,7 +4,7 @@ namespace FacturaServicio.Models
 {
     public class Vivienda
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         
         [Required (ErrorMessage = "El campo {0} es requerido")]
         [StringLength(maximumLength:  50, MinimumLength =3,ErrorMessage ="la longitud del campo {0} debe ser entre {2} y{1} caracteres")]

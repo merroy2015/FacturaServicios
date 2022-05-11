@@ -10,7 +10,6 @@
         <thead>
            <tr>
                 <th>Aciones</th>
-                <th>IdClinetes</th>
                 <th>Cedula</th>
                 <th>Nombre</th>
                 <th>Apellidos</th>
@@ -24,14 +23,14 @@
             {
                 <tr>
                     <td>
-                    <a asp-action="AddDireccion" class="btn btn-success">Agre_Direcciones</a>
-                       <a asp-action="Editar" class="btn btn-primary">Editar</a>
+                    <a asp-action="AddDireccion" asp-route-IdClientes="@cliente.IdClientes" class="btn btn-success">Agre_Direcciones</a>
+                      
+                       <a asp-action="Editar" asp-route-IdClientes="@cliente.IdClientes" class="btn btn-warning">Editar</a>
+
                        <a class= "btn btn-danger">Borar</a>
 
                     </td>
-                    <td>
-                    @cliente.IdClientes
-                     </td>
+                   
                     <td>
                     @cliente.Cedula
    

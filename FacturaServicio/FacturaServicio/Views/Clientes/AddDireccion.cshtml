@@ -2,7 +2,8 @@
    
 
 @{
-    ViewBag["Title"] = "Agregar Direcciones";
+    ViewData["title"] = "Crear Cliente";
+
 }
 <h1 style="color:#1E90FF">CREAR DIRECCIONES</h1>
 <div class="p-1 mb-1 bg-secondary text-white">AQUI PUEDES CREAR LAS DIRECCIONES</div>
@@ -15,6 +16,15 @@
         <label style="color:#1E90FF" asp-for="IdClientes" class= "form-label"></label>
         <input type="text"asp-for="IdClientes" class="form-control" />
          <span asp-validation-for="IdClientes" class="text-danger"></span>
+    </div> <div class="mb-3">
+        <label style="color:#1E90FF" asp-for="Nombres" class= "form-label"></label>
+        <input type="text"asp-for="Nombres" class="form-control" />
+         <span asp-validation-for="Nombres" class="text-danger"></span>
+    </div>
+    </div> <div class="mb-3">
+        <label style="color:#1E90FF" asp-for="Apellidos" class= "form-label"></label>
+        <input type="text"asp-for="Apellidos" class="form-control" />
+         <span asp-validation-for="Apellidos" class="text-danger"></span>
     </div>
 
       <div class="mb-3">

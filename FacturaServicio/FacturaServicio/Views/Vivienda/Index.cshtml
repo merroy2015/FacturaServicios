@@ -11,8 +11,10 @@
         <thead>
            <tr>
                 <th>Aciones</th>
+                 <th>Id</th>
                 <th>Tipo</th>
                 <th>Estado</th>
+               
            </tr>
     
         </thead>
@@ -21,8 +23,13 @@
             {
                 <tr>
                     <td>
-                       <a asp-action="Editar" class="btn btn-primary">Editar</a>
+                       <a asp-action="Editar"asp-route-id="@vivienda.id" class="btn btn-primary">Editar</a>
+                       <a class="btn btn-warning" asp-action= "Editar" asp asp-route-id="@vivienda.id">Editar</a>
+
                        <a class= "btn btn-danger">Borar</a>
+                       </td>
+                    <td>
+                    @vivienda.id
                     </td>
                     <td>
                     @vivienda.Tipo
