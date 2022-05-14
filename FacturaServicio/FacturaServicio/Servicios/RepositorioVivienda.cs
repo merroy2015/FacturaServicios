@@ -7,6 +7,7 @@ namespace FacturaServicio.Servicios
     public interface IRepositorioVivienda
     {
         void Crear(Vivienda Vivienda);
+        Task Delete(int id);
         Task<IEnumerable<Vivienda>> Obtener(int UsuarioId);
         Task<Vivienda> ObtenerId(int id, int UsuarioId);
     }
@@ -31,7 +32,7 @@ namespace FacturaServicio.Servicios
   async Task<IEnumerable<Vivienda>> IRepositorioVivienda.Obtener(int UsuarioId)
         {
             using var connection = new SqlConnection(connectionString);
-            return await connection.QueryAsync<Vivienda>(@"SELECT IdVivienda, Tipo, Estado
+            return await connection.QueryAsync<Vivienda>(@"SELECT id, Tipo, Estado
                                                             From Vivienda
                                                             Where UsuarioId = @UsuarioId", new { UsuarioId });
         }
@@ -40,8 +41,13 @@ namespace FacturaServicio.Servicios
         {
             using var connection = new SqlConnection(connectionString);
             return await connection.QueryFirstOrDefaultAsync<Vivienda>(
-                 @"select * from Vivienda where IdVivienda= @id and UsuarioId= @UsuarioId",
+                 @"select * from Vivienda where id= @id and UsuarioId= @UsuarioId",
                  new { id, UsuarioId });
+        }
+       public async Task Delete( int id)
+        {
+          using var connection = new SqlConnection(connectionString);
+          await connection.ExecuteAsync(@"Delete Vivienda where id= @id", new {id });
         }
     }
 }
