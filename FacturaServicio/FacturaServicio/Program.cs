@@ -1,13 +1,17 @@
 using FacturaServicio.Servicios;
+using Vereyon.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddFlashMessage();
+
 builder.Services.AddTransient<IRepositorioVivienda, RepositorioVivienda>();
 builder.Services.AddTransient<IServiciosUsuarios, ServiciosUsuarios>();
 builder.Services.AddTransient<IRepositorioPoste, RepositorioPoste>();
 builder.Services.AddTransient<IRepositorioClientes, RepositorioClientes>();
+builder.Services.AddTransient<IRepositorioRuta, RepositorioRuta>();
 
 var app = builder.Build();
 

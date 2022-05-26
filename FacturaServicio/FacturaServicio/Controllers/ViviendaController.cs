@@ -4,6 +4,7 @@ using FacturaServicio.Servicios;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using Shooping.Helpers;
+using Vereyon.Web;
 using static Shooping.Helpers.ModalHelper;
 
 namespace FacturaServicio.Controllers
@@ -12,12 +13,14 @@ namespace FacturaServicio.Controllers
     {
         private readonly IRepositorioVivienda repositorioVivienda;
         private readonly IServiciosUsuarios servicioUsuarios;
+        private readonly IFlashMessage flashMessage;
 
         public ViviendaController(IRepositorioVivienda repositorioVivienda,
-           IServiciosUsuarios ServicioUsuarios)
+         IServiciosUsuarios ServicioUsuarios, IFlashMessage flashMessage)
         {
             this.repositorioVivienda = repositorioVivienda;
             servicioUsuarios = ServicioUsuarios;
+            this.flashMessage = flashMessage;
         }
 
         public async Task<IActionResult> Index()
@@ -27,7 +30,7 @@ namespace FacturaServicio.Controllers
             return View(vivienda);
         }
         [NoDirectAccess]
-  
+
         public async Task<IActionResult> Delete(int id)
 
         {
@@ -39,8 +42,11 @@ namespace FacturaServicio.Controllers
                 return RedirectToAction("NoEncontrado2", "Home");
             }
             await repositorioVivienda.Delete(id);
+            flashMessage.Confirmation("Se  ha eliminado satisfactoriamente el reistro.");
 
             return RedirectToAction(nameof(Index));
+
+
 
         }
 
@@ -49,11 +55,13 @@ namespace FacturaServicio.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View(vivienda);
+                return View ();
+                       
             }
             repositorioVivienda.Crear(vivienda);
 
-            return View();
+           return View(vivienda);
+
         }
         public async Task<IActionResult> Editar(int id)
         {
@@ -68,20 +76,56 @@ namespace FacturaServicio.Controllers
         }
 
         [NoDirectAccess]
-
-        public async Task<IActionResult> AddOrEdit(int id)
+        public async Task<IActionResult> AddOrEdit(Vivienda viviendas, int id = 0)
         {
-            var UsuarioId = servicioUsuarios.ObtenerUsuarioid();
 
-            var vivienda = await repositorioVivienda.ObtenerId(id, UsuarioId);
-
-            if (vivienda is null)
+            if (id == 0)
             {
-                return RedirectToAction("NoEncontrado1", "Home");
+                
+                return View(viviendas);
             }
+      
+            var UsuarioId = servicioUsuarios.ObtenerUsuarioid();
+            var vivienda = await repositorioVivienda.ObtenerId(id, UsuarioId);
+           
             return View(vivienda);
+            }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AddOrEdit(int id, Vivienda vivienda)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new { isValid = true, html = ModalHelper.RenderRazorViewToString(this, "Crear", vivienda) });
+
+            }
+            if (id == 0) //Insert
+               {
+                new Vivienda();
+
+                vivienda.UsuarioId = servicioUsuarios.ObtenerUsuarioid();
+                await repositorioVivienda.Crear(vivienda);
+                  
+         
+                flashMessage.Info("Registro creado.");
+                return Json(new { isValid = true, html = ModalHelper.RenderRazorViewToString(this, "_ViewAll", vivienda) });
+               
+
+
+            }
+            vivienda.UsuarioId = servicioUsuarios.ObtenerUsuarioid();
+                await repositorioVivienda.Update(vivienda);
+               
+                flashMessage.Info("Registro actualizado.");
+
+
+            return Json(new { isValid = true, html = ModalHelper.RenderRazorViewToString(this, "_ViewAll", vivienda) });
 
         }
-      }
-}
 
+    }
+
+           
+
+    
+}

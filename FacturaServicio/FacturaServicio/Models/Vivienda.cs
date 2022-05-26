@@ -11,5 +11,8 @@ namespace FacturaServicio.Models
         public string Tipo { get; set; }
        
         public string Estado { get; set; }
+
+        public int UsuarioId { get; set; }
+
     }
 }

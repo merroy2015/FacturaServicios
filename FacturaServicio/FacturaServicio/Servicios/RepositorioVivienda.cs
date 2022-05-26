@@ -6,10 +6,11 @@ namespace FacturaServicio.Servicios
 {
     public interface IRepositorioVivienda
     {
-        void Crear(Vivienda Vivienda);
+       Task Crear(Vivienda Vivienda);
         Task Delete(int id);
         Task<IEnumerable<Vivienda>> Obtener(int UsuarioId);
         Task<Vivienda> ObtenerId(int id, int UsuarioId);
+        Task Update(Vivienda vivienda);
     }
     public class RepositorioVivienda : IRepositorioVivienda
     {
@@ -19,11 +20,11 @@ namespace FacturaServicio.Servicios
             connectionString = configuration.GetConnectionString("DefaultConnection");
 
         }
-        void IRepositorioVivienda.Crear(Vivienda Vivienda)
+          public async Task Crear(Vivienda Vivienda)
         {
             using var connection = new SqlConnection(connectionString);
-            var id = connection.QuerySingle<int>($@"INSERT INTO Vivienda (Tipo,Estado)
-                Values (@Tipo,@Estado);
+            var id = await connection.QuerySingleAsync($@"INSERT INTO Vivienda (Tipo,Estado,UsuarioId)
+                Values (@Tipo,@Estado,@UsuarioId);
                 SELECT SCOPE_IDENTITY();", Vivienda);
             Vivienda.id = id;
         }
@@ -48,6 +49,13 @@ namespace FacturaServicio.Servicios
         {
           using var connection = new SqlConnection(connectionString);
           await connection.ExecuteAsync(@"Delete Vivienda where id= @id", new {id });
+        }
+        public async Task Update(Vivienda vivienda)
+        {
+            using var connection = new SqlConnection(connectionString);
+            var id = await connection.ExecuteAsync($@"UPDATE vivienda set tipo = @tipo, Estado = @Estado
+             where id = @id", vivienda);
+            vivienda.id = id;
         }
     }
 }

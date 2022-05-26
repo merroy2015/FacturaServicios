@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Vivienda>
+﻿@model IEnumerable<Ruta>
 
 <flash dismissable="true" />
 
@@ -14,13 +14,13 @@
                 @Html.DisplayNameFor(model => model.id)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tipo)
+                @Html.DisplayNameFor(model => model.Nombre)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Estado)
+                @Html.DisplayNameFor(model => model.LongitudIni)
             </th>         
             <th>
-                <a onclick="showInPopup('@Url.Action("AddOrEdit", "Vivienda", new { id = 0 }, Context.Request.Scheme)' , 'Nueva Vivienda')" class="btn btn-sm btn-primary text-white"><i class="bi bi-plus-circle-fill"></i>Nueva</a>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit", "Ruta", new { id = 0 }, Context.Request.Scheme)' , 'Nueva Vivienda')" class="btn btn-sm btn-primary text-white"><i class="bi bi-plus-circle-fill"></i>Nueva</a>
             </th>
         </tr>
     </thead>
@@ -32,13 +32,13 @@
                 @Html.DisplayFor(modelItem => item.id)
             </td>
             <td>
-                <a asp-action="Details" asp-controller="Vivie" asp-route-id="@item.id">@Html.DisplayFor(modelItem => item.Tipo)</a>
+                <a asp-action="Details" asp-controller="ruta" asp-route-id="@item.id">@Html.DisplayFor(modelItem => item.Nombre)</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Estado)
+                @Html.DisplayFor(modelItem => item.LongitudIni)
             </td>
             <td>
-                <a onclick="showInPopup('@Url.Action("AddOrEdit", "Vivienda", new { id = item.id }, Context.Request.Scheme)' , 'Actualizar Vivienda')" class="btn btn-sm btn-warning"><i class="bi-pencil-fill"></i> </a>
+                <a onclick="showInPopup('@Url.Action("AddOrEdit", "ruta", new { id = item.id }, Context.Request.Scheme)' , 'Actualizar Vivienda')" class="btn btn-sm btn-warning"><i class="bi-pencil-fill"></i> </a>
                 <button data-id="@item.id" class="btn btn-sm btn-danger deleteItem" data-bs-toggle="modal" data-bs-target="#deleteDialog"><i class="bi-trash-fill"></i></button>
             </td>
         </tr>

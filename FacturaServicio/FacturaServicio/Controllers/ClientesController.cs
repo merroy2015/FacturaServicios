@@ -26,7 +26,6 @@ namespace FacturaServicio.Controllers
         public IActionResult Crear(Clientes cliente)
 
         {
-
             return View(cliente);
         }
 

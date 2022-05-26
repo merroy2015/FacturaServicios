@@ -2,6 +2,7 @@
 using FacturaServicio.Servicios;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using static Shooping.Helpers.ModalHelper;
 
 namespace FacturaServicio.Controllers
 {
@@ -30,9 +31,10 @@ namespace FacturaServicio.Controllers
             var rutas = await repositorioPoste.Obtener(usuarioid);
             var modelo = new PosteCreacionViewModel();
        
-            modelo.TiposRuta = rutas.Select(x => new SelectListItem(x.Nombre, x.IdRutas.ToString()));
+            modelo.TiposRuta = rutas.Select(x => new SelectListItem(x.Nombre, x.id.ToString()));
           
             return View(modelo);
         }
+        
     }
 }
