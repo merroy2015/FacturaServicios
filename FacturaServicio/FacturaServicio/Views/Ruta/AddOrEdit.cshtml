@@ -11,24 +11,41 @@
     <form asp-action="AddOrEdit" autocomplete="off" asp-route-id="@Model.id" onsubmit="return jQueryAjaxPost(this);">
         <div class="box-body">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <span class="required">*</span>
-                <label asp-for="id" class="control-label"></label>
-                <input asp-for="id" class="form-control smfont" />
-                <span asp-validation-for="id" class="text-danger"></span>
-            </div>
+          
             <div class="form-group">
                 <span class="required">*</span>
                 <label asp-for="Nombre" class="control-label"></label>
                 <input asp-for="Nombre" class="form-control smfont" />,
                 <span asp-validation-for="Nombre" class="text-danger"></span>
             </div>
-             <div class="form-group">
-                <span class="required">*</span>
+             <div  class="form-group">
+               
                 <label asp-for="LongitudIni" class="control-label"></label>
                 <input asp-for="LongitudIni" class="form-control smfont" />
                 <span asp-validation-for="LongitudIni" class="text-danger"></span>
             </div>
+             <div class="form-group">
+               
+                <label asp-for="LatitudIni" class="control-label"></label>
+                <input asp-for="LatitudIni" class="form-control smfont" />
+                <span asp-validation-for="LatitudIni" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+              <label asp-for="LongitudFin" class="control-label"></label>
+                <input asp-for="LongitudFin" class="form-control smfont" />
+                <span asp-validation-for="LongitudFin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+              <label asp-for="LatitudFin" class="control-label"></label>
+                <input asp-for="LatitudFin" class="form-control smfont" />
+                <span asp-validation-for="LatitudFin" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+              <label asp-for="Estado" class="control-label"></label>
+                <input asp-for="Estado" class="form-control smfont" />
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-sm btn-primary" data-bs-dismiss="modal"><i class="fa fa-ban"></i> Cancelar</button>

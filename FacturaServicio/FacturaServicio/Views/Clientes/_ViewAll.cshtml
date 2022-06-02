@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Clientes>
+
+
+<flash dismissable="true" />
+
+<table class="table table-striped table-responsive-md table-bordered smfont"  id="CountriesTable">
+    <colgroup>
+        <col span="1" />
+        <col span="1" />
+        <col span="1" />
+        <col span="1" />
+         <col span="1" />
+    </colgroup>
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdClientes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombres)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellidos)
+            </th>
+             <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>   
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>   
+            <th>
+                <a asp-action="Crear" class=" btn btn-primary mb-3">Crear Nuevo</a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdClientes)
+            </td>
+            <td>
+                <a asp-action="Details" asp-controller="Poste" asp-route-id="@item.IdClientes">@Html.DisplayFor(modelItem => item.Apellidos)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombres)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                  <a asp-action="AddDireccion" asp-route-IdClientes="@item.IdClientes" class="btn btn-success">Agre_Direcciones</a>
+                      
+                       <a asp-action="Editar" asp-route-IdClientes="@item.IdClientes" class="btn btn-warning">Editar</a>
+
+
+                <button data-id="@item.IdClientes" class="btn btn-sm btn-danger deleteItem" data-bs-toggle="modal" data-bs-target="#deleteDialog"><i class="bi-trash-fill"></i></button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+

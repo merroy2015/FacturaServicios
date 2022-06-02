@@ -26,7 +26,7 @@ namespace FacturaServicio.Servicios
             var id = await connection.QuerySingleAsync($@"INSERT INTO Vivienda (Tipo,Estado,UsuarioId)
                 Values (@Tipo,@Estado,@UsuarioId);
                 SELECT SCOPE_IDENTITY();", Vivienda);
-            Vivienda.id = id;
+          
         }
 
 

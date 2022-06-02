@@ -96,29 +96,19 @@ namespace FacturaServicio.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return Json(new { isValid = true, html = ModalHelper.RenderRazorViewToString(this, "Crear", vivienda) });
+                return View();
 
             }
             if (id == 0) //Insert
-               {
-                new Vivienda();
-
+                {
                 vivienda.UsuarioId = servicioUsuarios.ObtenerUsuarioid();
                 await repositorioVivienda.Crear(vivienda);
-                  
-         
                 flashMessage.Info("Registro creado.");
                 return Json(new { isValid = true, html = ModalHelper.RenderRazorViewToString(this, "_ViewAll", vivienda) });
-               
-
-
-            }
-            vivienda.UsuarioId = servicioUsuarios.ObtenerUsuarioid();
+                }
+                vivienda.UsuarioId = servicioUsuarios.ObtenerUsuarioid();
                 await repositorioVivienda.Update(vivienda);
-               
-                flashMessage.Info("Registro actualizado.");
-
-
+              flashMessage.Info("Registro actualizado.");
             return Json(new { isValid = true, html = ModalHelper.RenderRazorViewToString(this, "_ViewAll", vivienda) });
 
         }

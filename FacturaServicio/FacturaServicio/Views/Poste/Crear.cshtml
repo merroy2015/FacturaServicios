@@ -3,13 +3,13 @@
     ViewData["Title"] = "Crear Postes";
 }
 <h1>Crear Poste</h1>
-<form asp-action="Crear">
+<form asp-action="Crear1">
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
 <div class="mb-3">
 <label asp-for="IdRutas" class="form-label"></label>
-<select asp-for="IdPoste" asp-items= "Model.TiposRuta" class="form-select"></select>
-<span asp-validation-for="IdPoste" class="Text-danger"></span>
+<select asp-for="IdRutas" asp-items= "Model.TiposRutas" class="form-select"></select>
+<span asp-validation-for="IdRutas" class="Text-danger"></span>
 </div>
 
 <div class="mb-3">
